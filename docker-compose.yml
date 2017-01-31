@@ -1,0 +1,21 @@
+version: '2'
+services:
+  elasticsearch:
+    build: elasticsearch
+    working_dir: /data
+    command: /elasticsearch/bin/elasticsearch -Des.config=/data/config/elasticsearch.yml
+    volumes:
+     - /var/lib/docker/<app_name>/elasticsearch/data:/data
+     - ./elasticsearch/config:/data/config
+    ports:
+     - "9200:9200"
+
+  logstash:
+    build: logstash/
+    command: -f /static/config-dir/logstash.conf
+    volumes:
+      - /data/logstash.conf /static/config-dir/
+    ports:
+      - "9998:9998"
+    depends_on:
+      - elasticsearch 
