@@ -3,7 +3,7 @@ services:
   elasticsearch:
     build: elasticsearch
     working_dir: /data
-    command: /elasticsearch/bin/elasticsearch -Des.config=/data/config/elasticsearch.yml
+    #command: /elasticsearch/bin/elasticsearch -Des.config=/data/config/elasticsearch.yml
     volumes:
      - /var/lib/docker/<app_name>/elasticsearch/data:/data
      - ./elasticsearch/config:/data/config
